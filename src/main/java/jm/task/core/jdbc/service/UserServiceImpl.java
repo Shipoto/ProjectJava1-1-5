@@ -6,26 +6,26 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     public void createUsersTable() {
-
+        createUsersTable();
     }
 
     public void dropUsersTable() {
-
+        dropUsersTable();
     }
 
     public void saveUser(String name, String lastName, byte age) {
-
+        saveUser(name, lastName, age);
     }
 
     public void removeUserById(long id) {
-
+        removeUserById(id);
     }
 
     public List<User> getAllUsers() {
-        return null;
+        return getAllUsers();
     }
 
     public void cleanUsersTable() {
-
+        cleanUsersTable();
     }
 }
