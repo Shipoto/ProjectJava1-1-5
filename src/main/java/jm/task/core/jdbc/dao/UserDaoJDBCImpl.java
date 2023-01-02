@@ -14,7 +14,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void createUsersTable() {
         try (PreparedStatement preparedStatement = getConnect()
-                .prepareStatement("CREATE TABLE IF NOT EXISTS user (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), lastName VARCHAR(20), age INT)");) {
+                .prepareStatement("CREATE TABLE IF NOT EXISTS user (id INT PRIMARY KEY AUTO_INCREMENT, " +
+                        "name VARCHAR(20), lastName VARCHAR(20), age INT)")) {
 
             preparedStatement.executeUpdate();
 
@@ -35,11 +36,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        String sql = "INSERT INTO user VALUES (id, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = getConnect().prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = getConnect()
+                .prepareStatement("INSERT INTO user VALUES (id, ?, ?, ?)")) {
 
-//            preparedStatement.setLong(1, 0);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
@@ -53,8 +53,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        String sql = "DELETE FROM user WHERE id=?";
-        try (PreparedStatement preparedStatement = getConnect().prepareStatement(sql)) {
+
+        try (PreparedStatement preparedStatement = getConnect().prepareStatement("DELETE FROM user WHERE id=?")) {
 
             preparedStatement.setLong(1, id);
 
@@ -68,9 +68,9 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
 
-        try (Statement statement = getConnect().createStatement()){
-            String sql = "SELECT * FROM user";
-            ResultSet resultSet = statement.executeQuery(sql);
+        try (Statement statement = getConnect().createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM user");
 
             while(resultSet.next()) {
                 User user = new User();
