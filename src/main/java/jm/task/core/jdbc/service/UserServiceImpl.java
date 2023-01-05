@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.service;
 
 import jm.task.core.jdbc.dao.UserDao;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
@@ -8,33 +9,33 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     public void createUsersTable() {
-        UserDao userDao = new UserDaoJDBCImpl();
-        userDao.createUsersTable();
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.createUsersTable();
     }
 
     public void dropUsersTable() {
-        UserDao userDao = new UserDaoJDBCImpl();
-        userDao.dropUsersTable();
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.dropUsersTable();
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        UserDao userDao = new UserDaoJDBCImpl();
-        userDao.saveUser(name, lastName, age);
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.saveUser(name, lastName, age);
         System.out.println("User c imenem " + name + " dobavlen v basu dannih");
     }
 
     public void removeUserById(long id) {
-        UserDao userDao = new UserDaoJDBCImpl();
-        userDao.removeUserById(id);
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.removeUserById(id);
     }
 
     public List<User> getAllUsers() {
-        UserDao userDao = new UserDaoJDBCImpl();
-        return userDao.getAllUsers();
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        return userDaoHibernate.getAllUsers();
     }
 
     public void cleanUsersTable() {
-        UserDao userDao = new UserDaoJDBCImpl();
-        userDao.cleanUsersTable();
+        UserDao userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.cleanUsersTable();
     }
 }
