@@ -1,7 +1,5 @@
 package jm.task.core.jdbc.util;
 
-import com.mysql.cj.Session;
-//import com.mysql.cj.xdevapi.SessionFactory;
 import org.hibernate.SessionFactory;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -9,28 +7,16 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
-//    public static SessionFactory sessionFactory() {
-//
-//        SessionFactory factory = new Configuration()
-//                .configure("hibernate.cfg.xml")
-//                .addAnnotatedClass(User.class)
-//                .buildSessionFactory();
-//        return factory;
-//    }
-
     private static SessionFactory sessionFactory;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
 
-                // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/dbhiber?useSSL=false");
@@ -58,13 +44,6 @@ public class Util {
         }
         return sessionFactory;
     }
-
-//    SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-//            .addAnnotatedClass("User.class")
-//            .buildSessionFactory();
-//
-//    Session session = factory.getSession();
-
 
 
 //    private static final String DB_URL = "jdbc:mysql://localhost:3306/db1";
